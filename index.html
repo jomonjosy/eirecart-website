@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EireCart — Everything you need</title>
+<style>
+:root {
+  color-scheme: light dark;
+  --bg: light-dark(#f7f8fa,#101216);
+  --surface: light-dark(#ffffff,#17191e);
+  --surface2: light-dark(#f0f3f6,#20232a);
+  --text: light-dark(#111827,#f5f7fa);
+  --muted: light-dark(#667085,#aeb6c2);
+  --line: light-dark(#e5e7eb,#30343c);
+  --brand: light-dark(#0b5cff,#5d8cff);
+  --brand2: light-dark(#073fae,#9ab6ff);
+  --accent: light-dark(#e9f0ff,#1b2c52);
+}
+* { box-sizing: border-box; }
+body { margin:0; font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background:var(--bg); color:var(--text); }
+#app { min-height:100vh; background:var(--bg); }
+a { color:inherit; text-decoration:none; }
+.top { background:#0d1b2a; color:#fff; text-align:center; padding:8px 16px; font-size:13px; }
+.header { background:var(--surface); border-bottom:1px solid var(--line); position:sticky; top:0; z-index:10; }
+.header-inner { max-width:1180px; margin:auto; padding:16px 22px; display:flex; align-items:center; gap:24px; }
+.logo { font-size:27px; font-weight:900; letter-spacing:-1.2px; color:var(--brand); white-space:nowrap; }
+.logo span { color:var(--text); }
+.search { flex:1; position:relative; }
+.search input { width:100%; padding:13px 45px 13px 16px; border:1px solid var(--line); border-radius:10px; background:var(--surface2); color:var(--text); font-size:14px; outline:none; }
+.search button { position:absolute; right:5px; top:5px; border:0; background:var(--brand); color:#fff; border-radius:7px; height:34px; width:38px; cursor:pointer; }
+.actions { display:flex; gap:10px; }
+.action { border:1px solid var(--line); background:var(--surface); color:var(--text); border-radius:9px; padding:10px 13px; cursor:pointer; font-weight:700; font-size:13px; }
+.nav { border-top:1px solid var(--line); }
+.nav-inner { max-width:1180px; margin:auto; padding:10px 22px; display:flex; gap:20px; overflow:auto; white-space:nowrap; font-size:13px; font-weight:700; }
+.nav a:hover { color:var(--brand); }
+main { max-width:1180px; margin:auto; padding:28px 22px 60px; }
+.hero { display:grid; grid-template-columns:1.35fr .65fr; gap:18px; }
+.hero-main { background:linear-gradient(135deg,#0b5cff,#153a8a); color:#fff; border-radius:18px; padding:42px; min-height:330px; display:flex; flex-direction:column; justify-content:center; overflow:hidden; position:relative; }
+.hero-main:after { content:""; position:absolute; width:300px; height:300px; border-radius:50%; border:50px solid rgba(255,255,255,.08); right:-90px; bottom:-90px; }
+.eyebrow { font-size:12px; text-transform:uppercase; letter-spacing:1.6px; font-weight:800; opacity:.8; }
+h1 { font-size:48px; line-height:1.03; letter-spacing:-2.4px; margin:10px 0 14px; max-width:650px; }
+.hero p { font-size:17px; line-height:1.6; max-width:620px; margin:0 0 24px; color:#eaf0ff; }
+.ctas { display:flex; gap:10px; flex-wrap:wrap; }
+.btn { border:0; border-radius:9px; padding:12px 17px; font-weight:800; cursor:pointer; }
+.btn.white { background:#fff; color:#12346f; }
+.btn.outline { background:transparent; color:#fff; border:1px solid rgba(255,255,255,.45); }
+.hero-side { background:var(--surface); border:1px solid var(--line); border-radius:18px; padding:24px; }
+.hero-side h3 { margin:0 0 7px; font-size:20px; }
+.hero-side p { color:var(--muted); font-size:14px; line-height:1.5; }
+.quote-box { margin-top:18px; padding:17px; border-radius:12px; background:var(--accent); }
+.quote-box strong { display:block; margin-bottom:6px; }
+.quote-box button { margin-top:10px; width:100%; background:var(--brand); color:#fff; border:0; padding:11px; border-radius:8px; font-weight:800; cursor:pointer; }
+.section { margin-top:38px; }
+.section-head { display:flex; align-items:end; justify-content:space-between; margin-bottom:16px; gap:20px; }
+.section h2 { margin:0; font-size:25px; letter-spacing:-.7px; }
+.section-head p { margin:4px 0 0; color:var(--muted); font-size:14px; }
+.link { color:var(--brand); font-weight:800; font-size:13px; }
+.grid { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; }
+.card { background:var(--surface); border:1px solid var(--line); border-radius:13px; padding:18px; min-height:130px; transition:.15s ease; cursor:pointer; }
+.card:hover { transform:translateY(-2px); border-color:var(--brand); }
+.icon { width:42px; height:42px; border-radius:10px; background:var(--accent); display:grid; place-items:center; font-size:21px; margin-bottom:14px; }
+.card h3 { margin:0 0 5px; font-size:15px; }
+.card p { margin:0; color:var(--muted); font-size:12px; line-height:1.4; }
+.commercial { margin-top:38px; background:var(--surface); border:1px solid var(--line); border-radius:18px; padding:26px; }
+.commercial-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-top:18px; }
+.comm { padding:14px; border:1px solid var(--line); border-radius:10px; background:var(--surface2); font-weight:700; font-size:13px; }
+.featured { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+.product { background:var(--surface); border:1px solid var(--line); border-radius:13px; overflow:hidden; }
+.product-img { height:125px; background:linear-gradient(135deg,var(--surface2),var(--accent)); display:grid; place-items:center; font-size:42px; }
+.product-body { padding:15px; }
+.product small { color:var(--muted); }
+.product h3 { font-size:14px; margin:6px 0; }
+.price { font-weight:900; font-size:17px; }
+.footer { border-top:1px solid var(--line); background:var(--surface); }
+.footer-inner { max-width:1180px; margin:auto; padding:30px 22px; display:flex; justify-content:space-between; gap:30px; color:var(--muted); font-size:12px; }
+.toast { position:fixed; bottom:20px; right:20px; background:#111827; color:#fff; padding:12px 16px; border-radius:9px; box-shadow:0 10px 30px rgba(0,0,0,.2); opacity:0; transform:translateY(10px); pointer-events:none; transition:.2s; }
+.toast.show { opacity:1; transform:none; }
+@media(max-width:800px){ .header-inner{flex-wrap:wrap}.search{order:3;flex-basis:100%}.hero{grid-template-columns:1fr}.grid{grid-template-columns:repeat(2,1fr)}.featured{grid-template-columns:1fr}.commercial-grid{grid-template-columns:1fr 1fr}h1{font-size:38px}.hero-main{padding:30px}.footer-inner{flex-direction:column} }
+@media(max-width:520px){.grid{grid-template-columns:1fr 1fr}.actions{display:none}.nav-inner{gap:14px}.commercial-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div id="app">
+  <div class="top">Irish online shopping for home, business & hospitality • Supplier-sourced • No-stock launch model</div>
+  <header class="header">
+    <div class="header-inner">
+      <div class="logo">Eire<span>Cart</span></div>
+      <div class="search"><input id="search" placeholder="Search products, brands or model numbers…"><button onclick="searchSite()">⌕</button></div>
+      <div class="actions"><button class="action" onclick="toast('Trade account enquiry started')">Trade Account</button><button class="action" onclick="toast('Your cart is ready for products')">Cart (0)</button></div>
+    </div>
+    <nav class="nav"><div class="nav-inner">
+      <a href="#categories">Shop All</a><a href="#commercial">Commercial & Hospitality</a><a href="#categories">Home & Living</a><a href="#categories">Kitchen</a><a href="#categories">Electronics</a><a href="#categories">Tools & DIY</a><a href="#categories">Office & Business</a><a href="#categories">Cleaning</a><a href="#categories">Garden</a><a href="#deals">Deals</a>
+    </div></nav>
+  </header>
+  <main>
+    <section class="hero">
+      <div class="hero-main">
+        <div class="eyebrow">EireCart • Ireland</div>
+        <h1>Everything you need. One cart.</h1>
+        <p>Shop everyday products or send us your business requirement. EireCart brings online retail, trade supply and commercial procurement together.</p>
+        <div class="ctas"><button class="btn white" onclick="document.getElementById('categories').scrollIntoView({behavior:'smooth'})">Start shopping</button><button class="btn outline" onclick="document.getElementById('quote').scrollIntoView({behavior:'smooth'})">Request a quote</button></div>
+      </div>
+      <aside class="hero-side" id="quote">
+        <h3>Can't find what you need?</h3>
+        <p>Send us a product, model number, specification or project requirement. We'll source it and come back with a price.</p>
+        <div class="quote-box"><strong>Commercial & project sourcing</strong><span>Equipment • hospitality • office • cleaning • business supplies</span><button onclick="toast('Quote request form opened')">Request a quote</button></div>
+      </aside>
+    </section>
+
+    <section class="section" id="categories">
+      <div class="section-head"><div><h2>Shop by category</h2><p>Built to grow from a focused launch into a broad Irish ecommerce catalogue.</p></div><a class="link" href="#">View all →</a></div>
+      <div class="grid">
+        <div class="card"><div class="icon">🏠</div><h3>Home & Living</h3><p>Furniture, storage, home essentials and more.</p></div>
+        <div class="card"><div class="icon">🍳</div><h3>Kitchen</h3><p>Appliances, cookware, preparation and accessories.</p></div>
+        <div class="card"><div class="icon">💻</div><h3>Electronics</h3><p>Everyday tech, electricals and accessories.</p></div>
+        <div class="card"><div class="icon">🔧</div><h3>Tools & DIY</h3><p>Tools, workshop equipment and project essentials.</p></div>
+        <div class="card"><div class="icon">🏢</div><h3>Office & Business</h3><p>Workplace equipment, furniture and supplies.</p></div>
+        <div class="card"><div class="icon">🧹</div><h3>Cleaning</h3><p>Cleaning equipment, hygiene and janitorial supplies.</p></div>
+        <div class="card"><div class="icon">🌿</div><h3>Garden & Outdoor</h3><p>Outdoor equipment, storage and garden essentials.</p></div>
+        <div class="card"><div class="icon">🍽️</div><h3>Commercial & Hospitality</h3><p>Professional catering and hospitality equipment.</p></div>
+      </div>
+    </section>
+
+    <section class="commercial" id="commercial">
+      <div class="section-head"><div><h2>Commercial & Hospitality</h2><p>A specialist department for restaurants, hotels, cafés, contractors and businesses.</p></div><a class="link" href="#">Explore commercial →</a></div>
+      <div class="commercial-grid">
+        <div class="comm">❄️ Refrigeration</div><div class="comm">🔥 Cooking Equipment</div><div class="comm">🍽️ Dishwashing</div>
+        <div class="comm">🧊 Ice Machines</div><div class="comm">🥣 Food Preparation</div><div class="comm">🪑 Stainless Steel</div>
+        <div class="comm">☕ Bar & Beverage</div><div class="comm">🧼 Cleaning & Hygiene</div><div class="comm">🧰 Spares & Consumables</div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="commercial" style="margin-top:0">
+        <div class="section-head"><div><h2>How EireCart works</h2><p>Launching lean: source products after the customer enquiry or order, then scale from the first sales.</p></div></div>
+        <div class="commercial-grid">
+          <div class="comm">1. Customer finds a product</div><div class="comm">2. EireCart confirms price & delivery</div><div class="comm">3. Supplier fulfils the order</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="deals">
+      <div class="section-head"><div><h2>Featured launch products</h2><p>Example catalogue layout — supplier products can be added once trade accounts are established.</p></div><a class="link" href="#">See more →</a></div>
+      <div class="featured">
+        <div class="product"><div class="product-img">❄️</div><div class="product-body"><small>Commercial Refrigeration</small><h3>Undercounter Commercial Refrigerator</h3><div class="price">From €—</div></div></div>
+        <div class="product"><div class="product-img">🍽️</div><div class="product-body"><small>Warewashing</small><h3>Commercial Undercounter Dishwasher</h3><div class="price">From €—</div></div></div>
+        <div class="product"><div class="product-img">🧊</div><div class="product-body"><small>Hospitality</small><h3>Commercial Ice Machine</h3><div class="price">From €—</div></div></div>
+      </div>
+    </section>
+  </main>
+  <footer class="footer"><div class="footer-inner"><div><strong style="color:var(--text);font-size:16px">EireCart</strong><br>Everything you need. One cart.</div><div>Trade Accounts • Project Quotes • Supplier Sourcing<br>© 2026 EireCart. Concept preview.</div></div></footer>
+  <div id="toast" class="toast"></div>
+</div>
+<script>
+function toast(message){const t=document.getElementById('toast');t.textContent=message;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),1800)}
+function searchSite(){const q=document.getElementById('search').value.trim();toast(q?`Searching for “${q}”`:'Enter a product, brand or model number')}
+</script>
+</body>
+</html>
